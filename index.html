@@ -1,120 +1,107 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechPulse — Premium Edition</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Fraunces:wght@700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #0b1120;
-            --surface: #171f32;
-            --accent: #22d3ee;
-            --text-p: #f1f5f9;
-            --text-s: #94a3b8;
-            --border: rgba(255,255,255,0.06);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechPulse — Berita Teknologi</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --bg: #000000;
+        --card: #111111;
+        --accent: #00d4ff;
+        --text: #ffffff;
+        --text-dim: #888888;
+    }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-p);
-            line-height: 1.6;
-        }
+    body {
+        font-family: 'Outfit', sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        padding: 20px;
+    }
 
-        /* Reading Progress Bar */
-        #progress {
-            position: fixed; top: 0; left: 0; height: 3px;
-            background: linear-gradient(to right, var(--accent), #818cf8);
-            width: 0%; z-index: 1000; transition: 0.1s;
-        }
+    header {
+        padding: 40px 0;
+        text-align: left;
+    }
 
-        header {
-            padding: 2.5rem 1.5rem;
-            text-align: center;
-            background: radial-gradient(circle at top, #1e293b 0%, var(--bg) 100%);
-        }
+    .logo {
+        font-family: 'Fraunces', serif;
+        font-size: 24px;
+        font-weight: 900;
+        color: var(--text);
+    }
 
-        .logo { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 700; color: #fff; }
-        .logo span { color: var(--accent); }
+    .logo span { color: var(--accent); }
 
-        .container { max-width: 600px; margin: 0 auto; padding: 1rem 1.5rem; }
+    .hero-text {
+        font-family: 'Fraunces', serif;
+        font-size: 36px;
+        line-height: 1.1;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
 
-        .main-headline {
-            font-size: 2.2rem; font-weight: 800; margin-bottom: 2rem;
-            letter-spacing: -1px; line-height: 1.1;
-        }
+    .card {
+        background: var(--card);
+        padding: 24px;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        border: 1px solid #222;
+    }
 
-        .card {
-            background: var(--surface);
-            border-radius: 20px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--border);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative; overflow: hidden;
-        }
+    .tag {
+        color: var(--accent);
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        display: block;
+    }
 
-        .card:active { transform: scale(0.96); background: #1e293b; }
+    .title {
+        font-family: 'Fraunces', serif;
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
 
-        .tag {
-            display: inline-block;
-            background: rgba(34, 211, 238, 0.1);
-            color: var(--accent);
-            padding: 4px 12px;
-            border-radius: 8px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(34, 211, 238, 0.2);
-        }
-
-        .title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.6rem; color: #fff; line-height: 1.3; }
-        .desc { color: var(--text-s); font-size: 0.95rem; }
-
-        footer { text-align: center; padding: 3rem; color: var(--text-s); font-size: 0.8rem; opacity: 0.5; }
-    </style>
+    .desc {
+        color: var(--text-dim);
+        font-size: 14px;
+        line-height: 1.5;
+    }
+</style>
 </head>
 <body>
 
-    <div id="progress"></div>
+<header>
+    <div class="logo">Tech<span>Pulse</span></div>
+    <h1 class="hero-text">Update Tren <br>Teknologi Dunia.</h1>
+</header>
 
-    <header>
-        <div class="logo">Tech<span>Pulse</span></div>
-    </header>
-
-    <div class="container">
-        <h1 class="main-headline">Tren Teknologi <br><span style="color:var(--accent)">Diringkas AI.</span></h1>
-        
-        <div id="feed"></div>
+<div id="app">
+    <div class="card">
+        <span class="tag">Artificial Intelligence</span>
+        <div class="title">GPT-5 Resmi Diluncurkan</div>
+        <p class="desc">Model bahasa terbaru yang mampu melakukan penalaran tingkat tinggi dan coding otomatis.</p>
     </div>
 
-    <footer>&copy; 2026 TechPulse Lab • Created on iPhone</footer>
+    <div class="card">
+        <span class="tag">Startup</span>
+        <div class="title">Investasi Besar di Indonesia</div>
+        <p class="desc">Sektor teknologi pertanian mendapatkan suntikan dana baru dari investor global.</p>
+    </div>
 
-    <script>
-        const news = [
-            { t: "AI", h: "GPT-5 Resmi Rilis: Mampu Berpikir Logis", d: "OpenAI meluncurkan model baru yang bisa menyelesaikan masalah matematika rumit dan coding level senior." },
-            { t: "STARTUP", h: "Pendanaan $50 Juta untuk AgriTech", d: "Sektor pertanian digital Indonesia kembali dilirik raksasa investasi dunia." },
-            { t: "GADGET", h: "Snapdragon X2 Guncang Pasar", d: "Chip ARM terbaru yang membuat baterai laptop sanggup bertahan hingga 2 hari penuh." }
-        ];
+    <div class="card">
+        <span class="tag">Gadget</span>
+        <div class="title">Revolusi Chip ARM</div>
+        <p class="desc">Laptop masa depan kini hadir dengan daya tahan baterai hingga dua hari penuh.</p>
+    </div>
+</div>
 
-        const feed = document.getElementById('feed');
-        feed.innerHTML = news.map(n => `
-            <div class="card">
-                <span class="tag">${n.t}</span>
-                <div class="title">${n.h}</div>
-                <p class="desc">${n.d}</p>
-            </div>
-        `).join('');
-
-        window.onscroll = () => {
-            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            document.getElementById("progress").style.width = (winScroll / height) * 100 + "%";
-        };
-    </script>
 </body>
 </html>
