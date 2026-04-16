@@ -3,49 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TechPulse — Berita & Tren Teknologi Terkini</title>
+<title>TechPulse — Portal Berita AI</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#07090f;--bg2:#0c0f1a;--surface:#111624;--accent:#00d4ff;--accent-dim:rgba(0,212,255,0.12);
-  --text:#dde3f0;--text-sub:#8892ab;--border:rgba(255,255,255,0.07);--shadow:0 4px 24px rgba(0,0,0,0.5);
+  --bg:#07090f;--surface:#111624;--accent:#00d4ff;--text:#dde3f0;--text-sub:#8892ab;--border:rgba(255,255,255,0.07);--glow:0 0 30px rgba(0,212,255,0.15);
 }
 [data-theme="light"] {
-  --bg:#f2f1ec;--bg2:#e8e6df;--surface:#ffffff;--accent:#006fcc;--accent-dim:rgba(0,111,204,0.10);
-  --text:#12151e;--text-sub:#5a6278;--border:rgba(0,0,0,0.09);--shadow:0 4px 24px rgba(0,0,0,0.10);
+  --bg:#f2f1ec;--surface:#ffffff;--accent:#006fcc;--text:#12151e;--text-sub:#5a6278;--border:rgba(0,0,0,0.09);--glow:none;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); transition: 0.3s; }
-nav { position:sticky; top:0; background:var(--bg); border-bottom:1px solid var(--border); padding:1rem; display:flex; justify-content:space-between; align-items:center; z-index:100; }
+body { font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); transition:0.3s; line-height:1.6; }
+nav { position:sticky; top:0; background:rgba(7,9,15,0.8); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); padding:1rem 5%; display:flex; justify-content:space-between; align-items:center; z-index:100; }
 .logo { font-family:'Fraunces',serif; font-weight:900; font-size:1.5rem; }
 .logo em { color:var(--accent); font-style:normal; }
-.hero { padding:3rem 1.5rem; text-align:center; }
-.hero h1 { font-family:'Fraunces',serif; font-size:2.5rem; margin-bottom:1rem; }
-.card { background:var(--surface); border-radius:16px; margin-bottom:1rem; padding:1.5rem; border:1px solid var(--border); box-shadow:var(--shadow); cursor:pointer; }
-.c-cat { font-size:0.7rem; font-weight:700; color:var(--accent); text-transform:uppercase; margin-bottom:0.5rem; }
-.c-title { font-family:'Fraunces',serif; font-size:1.2rem; margin-bottom:0.5rem; }
-.wrap { max-width:800px; margin:0 auto; padding:1.5rem; }
-#pb { position:fixed; top:0; left:0; height:3px; background:var(--accent); width:0; z-index:1000; }
-.btn-theme { background:var(--accent-dim); color:var(--accent); border:none; padding:0.5rem 1rem; border-radius:20px; font-weight:600; font-size:0.8rem; }
-/* Modal sederhana */
-.modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:1000; padding:2rem; overflow-y:auto; }
-.modal.open { display:block; }
-.modal-content { background:var(--surface); padding:2rem; border-radius:20px; max-width:600px; margin:auto; position:relative; }
-.close { position:absolute; top:1rem; right:1rem; color:var(--text); font-size:1.5rem; cursor:pointer; }
+.hero { padding:4rem 5%; text-align:center; background:radial-gradient(circle at top, #111624 0%, var(--bg) 70%); }
+.hero h1 { font-family:'Fraunces',serif; font-size:clamp(2rem, 5vw, 3.5rem); line-height:1.1; margin-bottom:1rem; }
+.highlight { color:var(--accent); text-shadow: var(--glow); }
+.ask-box { max-width:600px; margin:2rem auto; position:relative; }
+.ask-box input { width:100%; padding:1rem 1.5rem; border-radius:15px; border:1px solid var(--border); background:var(--surface); color:var(--text); outline:none; }
+.ask-box button { position:absolute; right:8px; top:8px; background:var(--accent); border:none; padding:0.6rem 1.2rem; border-radius:10px; font-weight:700; cursor:pointer; }
+.wrap { max-width:1100px; margin:0 auto; padding:2rem 5%; display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem; }
+.card { background:var(--surface); border-radius:20px; padding:1.5rem; border:1px solid var(--border); transition:0.3s; cursor:pointer; }
+.card:hover { transform:translateY(-5px); border-color:var(--accent); box-shadow: var(--glow); }
+.c-cat { font-size:0.65rem; font-weight:800; color:var(--accent); letter-spacing:1px; text-transform:uppercase; margin-bottom:0.8rem; }
+.c-title { font-family:'Fraunces',serif; font-size:1.3rem; margin-bottom:0.8rem; }
+.modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:1000; padding:1rem; overflow-y:auto; backdrop-filter:blur(5px); }
+.modal-content { background:var(--surface); padding:2.5rem; border-radius:25px; max-width:700px; margin:2rem auto; position:relative; border:1px solid var(--border); }
+.close { position:absolute; top:1.5rem; right:1.5rem; font-size:1.5rem; cursor:pointer; }
 </style>
 </head>
 <body>
-<div id="pb"></div>
 <nav>
   <div class="logo">Tech<em>Pulse</em></div>
-  <button class="btn-theme" onclick="toggleTheme()">Ganti Tema</button>
+  <button style="background:none; border:1px solid var(--accent); color:var(--accent); padding:5px 15px; border-radius:20px; font-size:0.8rem;" onclick="toggleTheme()">Mode</button>
 </nav>
 <div class="hero">
-  <h1>Tren Tech Terkini,<br><span style="color:var(--accent)">Dirangkum AI</span></h1>
-  <p style="color:var(--text-sub)">Website berita buatan sendiri yang online 24 jam!</p>
-</div>
-<div class="wrap" id="news-container">
+  <h1>Berita Teknologi,<br><span class="highlight">Ditenagai AI.</span></h1>
+  <p style="color:var(--text-sub)">Portal masa depan untuk update startup dan gadget Indonesia.</p>
+  <div class="ask-box">
+    <input type="text" id="ai-in" placeholder="Tanya AI tentang berita hari ini...">
+    <button onclick="askAI()">Tanya</button>
   </div>
+</div>
+<div class="wrap" id="main-grid"></div>
 
 <div id="modal" class="modal">
   <div class="modal-content">
@@ -56,18 +57,17 @@ nav { position:sticky; top:0; background:var(--bg); border-bottom:1px solid var(
 
 <script>
 const arts = [
-  {cat:'AI', title:'GPT-5 Resmi Diluncurkan!', desc:'Model AI terbaru ini diklaim setara dengan developer senior dalam menulis kode.'},
-  {cat:'STARTUP', title:'Startup RI Raih $50 Juta', desc:'Investasi besar masuk ke sektor AgriTech Indonesia minggu ini.'},
-  {cat:'GADGET', title:'Snapdragon X2 Rilis', desc:'Chip ARM terkencang yang siap menantang dominasi laptop Intel.'}
+  {cat:'Kecerdasan Buatan', title:'GPT-5 Resmi Rilis: Mampu Berpikir Secara Logis', desc:'OpenAI meluncurkan model baru yang bisa menyelesaikan masalah matematika rumit dan coding level senior.', body:'Ini adalah era baru AI. GPT-5 tidak hanya menebak kata, tapi memiliki "Reasoning" atau kemampuan berpikir bertahap seperti manusia.'},
+  {cat:'Startup RI', title:'Pendanaan $50 Juta untuk AgriTech Lokal', desc:'Startup pertanian Indonesia mendapatkan suntikan dana segar dari Silicon Valley.', body:'Investasi ini membuktikan bahwa sektor teknologi pertanian di Indonesia masih menjadi primadona bagi investor global tahun 2026.'},
+  {cat:'Gadget', title:'Snapdragon X2 Mengguncang Pasar Laptop', desc:'Chip terbaru dari Qualcomm yang bikin baterai laptop tahan 2 hari.', body:'Dengan arsitektur ARM, laptop masa depan tidak akan lagi butuh kipas yang berisik namun tetap memiliki performa super kencang.'}
 ];
 
 function render() {
-  const container = document.getElementById('news-container');
-  container.innerHTML = arts.map((a, i) => `
+  document.getElementById('main-grid').innerHTML = arts.map((a, i) => `
     <div class="card" onclick="openArt(${i})">
       <div class="c-cat">${a.cat}</div>
       <div class="c-title">${a.title}</div>
-      <p style="font-size:0.9rem; color:var(--text-sub)">${a.desc}</p>
+      <p style="color:var(--text-sub); font-size:0.9rem">${a.desc}</p>
     </div>
   `).join('');
 }
@@ -75,24 +75,24 @@ function render() {
 function openArt(i) {
   const a = arts[i];
   document.getElementById('modal-body').innerHTML = `
-    <h2 style="font-family:'Fraunces',serif; margin-bottom:1rem">${a.title}</h2>
-    <p style="line-height:1.6; color:var(--text-sub)">Ini adalah isi berita lengkap dari ${a.title}. Berhasil dibuka dari GitHub!</p>
+    <div class="c-cat">${a.cat}</div>
+    <h2 style="font-family:'Fraunces',serif; font-size:2rem; margin:1rem 0;">${a.title}</h2>
+    <p style="font-size:1.1rem; line-height:1.8; color:var(--text-sub)">${a.body}</p>
   `;
-  document.getElementById('modal').classList.add('open');
+  document.getElementById('modal').style.display = 'block';
 }
 
-function closeArt() { document.getElementById('modal').classList.remove('open'); }
+function closeArt() { document.getElementById('modal').style.display = 'none'; }
+
+function askAI() {
+  const input = document.getElementById('ai-in').value;
+  alert("AI TechPulse menjawab: Tren '" + input + "' saat ini sedang naik daun di Jakarta!");
+}
 
 function toggleTheme() {
   const html = document.documentElement;
-  const current = html.getAttribute('data-theme');
-  html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+  html.setAttribute('data-theme', html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
 }
-
-window.onscroll = () => {
-  let scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-  document.getElementById("pb").style.width = scrolled + "%";
-};
 
 render();
 </script>
