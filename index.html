@@ -1,100 +1,120 @@
 <!DOCTYPE html>
-<html lang="id" data-theme="dark">
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TechPulse — Portal Berita AI</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg:#07090f;--surface:#111624;--accent:#00d4ff;--text:#dde3f0;--text-sub:#8892ab;--border:rgba(255,255,255,0.07);--glow:0 0 30px rgba(0,212,255,0.15);
-}
-[data-theme="light"] {
-  --bg:#f2f1ec;--surface:#ffffff;--accent:#006fcc;--text:#12151e;--text-sub:#5a6278;--border:rgba(0,0,0,0.09);--glow:none;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Outfit',sans-serif; background:var(--bg); color:var(--text); transition:0.3s; line-height:1.6; }
-nav { position:sticky; top:0; background:rgba(7,9,15,0.8); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); padding:1rem 5%; display:flex; justify-content:space-between; align-items:center; z-index:100; }
-.logo { font-family:'Fraunces',serif; font-weight:900; font-size:1.5rem; }
-.logo em { color:var(--accent); font-style:normal; }
-.hero { padding:4rem 5%; text-align:center; background:radial-gradient(circle at top, #111624 0%, var(--bg) 70%); }
-.hero h1 { font-family:'Fraunces',serif; font-size:clamp(2rem, 5vw, 3.5rem); line-height:1.1; margin-bottom:1rem; }
-.highlight { color:var(--accent); text-shadow: var(--glow); }
-.ask-box { max-width:600px; margin:2rem auto; position:relative; }
-.ask-box input { width:100%; padding:1rem 1.5rem; border-radius:15px; border:1px solid var(--border); background:var(--surface); color:var(--text); outline:none; }
-.ask-box button { position:absolute; right:8px; top:8px; background:var(--accent); border:none; padding:0.6rem 1.2rem; border-radius:10px; font-weight:700; cursor:pointer; }
-.wrap { max-width:1100px; margin:0 auto; padding:2rem 5%; display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem; }
-.card { background:var(--surface); border-radius:20px; padding:1.5rem; border:1px solid var(--border); transition:0.3s; cursor:pointer; }
-.card:hover { transform:translateY(-5px); border-color:var(--accent); box-shadow: var(--glow); }
-.c-cat { font-size:0.65rem; font-weight:800; color:var(--accent); letter-spacing:1px; text-transform:uppercase; margin-bottom:0.8rem; }
-.c-title { font-family:'Fraunces',serif; font-size:1.3rem; margin-bottom:0.8rem; }
-.modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:1000; padding:1rem; overflow-y:auto; backdrop-filter:blur(5px); }
-.modal-content { background:var(--surface); padding:2.5rem; border-radius:25px; max-width:700px; margin:2rem auto; position:relative; border:1px solid var(--border); }
-.close { position:absolute; top:1.5rem; right:1.5rem; font-size:1.5rem; cursor:pointer; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechPulse — Premium Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Fraunces:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0b1120;
+            --surface: #171f32;
+            --accent: #22d3ee;
+            --text-p: #f1f5f9;
+            --text-s: #94a3b8;
+            --border: rgba(255,255,255,0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-p);
+            line-height: 1.6;
+        }
+
+        /* Reading Progress Bar */
+        #progress {
+            position: fixed; top: 0; left: 0; height: 3px;
+            background: linear-gradient(to right, var(--accent), #818cf8);
+            width: 0%; z-index: 1000; transition: 0.1s;
+        }
+
+        header {
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            background: radial-gradient(circle at top, #1e293b 0%, var(--bg) 100%);
+        }
+
+        .logo { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 700; color: #fff; }
+        .logo span { color: var(--accent); }
+
+        .container { max-width: 600px; margin: 0 auto; padding: 1rem 1.5rem; }
+
+        .main-headline {
+            font-size: 2.2rem; font-weight: 800; margin-bottom: 2rem;
+            letter-spacing: -1px; line-height: 1.1;
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; overflow: hidden;
+        }
+
+        .card:active { transform: scale(0.96); background: #1e293b; }
+
+        .tag {
+            display: inline-block;
+            background: rgba(34, 211, 238, 0.1);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(34, 211, 238, 0.2);
+        }
+
+        .title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.6rem; color: #fff; line-height: 1.3; }
+        .desc { color: var(--text-s); font-size: 0.95rem; }
+
+        footer { text-align: center; padding: 3rem; color: var(--text-s); font-size: 0.8rem; opacity: 0.5; }
+    </style>
 </head>
 <body>
-<nav>
-  <div class="logo">Tech<em>Pulse</em></div>
-  <button style="background:none; border:1px solid var(--accent); color:var(--accent); padding:5px 15px; border-radius:20px; font-size:0.8rem;" onclick="toggleTheme()">Mode</button>
-</nav>
-<div class="hero">
-  <h1>Berita Teknologi,<br><span class="highlight">Ditenagai AI.</span></h1>
-  <p style="color:var(--text-sub)">Portal masa depan untuk update startup dan gadget Indonesia.</p>
-  <div class="ask-box">
-    <input type="text" id="ai-in" placeholder="Tanya AI tentang berita hari ini...">
-    <button onclick="askAI()">Tanya</button>
-  </div>
-</div>
-<div class="wrap" id="main-grid"></div>
 
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeArt()">&times;</span>
-    <div id="modal-body"></div>
-  </div>
-</div>
+    <div id="progress"></div>
 
-<script>
-const arts = [
-  {cat:'Kecerdasan Buatan', title:'GPT-5 Resmi Rilis: Mampu Berpikir Secara Logis', desc:'OpenAI meluncurkan model baru yang bisa menyelesaikan masalah matematika rumit dan coding level senior.', body:'Ini adalah era baru AI. GPT-5 tidak hanya menebak kata, tapi memiliki "Reasoning" atau kemampuan berpikir bertahap seperti manusia.'},
-  {cat:'Startup RI', title:'Pendanaan $50 Juta untuk AgriTech Lokal', desc:'Startup pertanian Indonesia mendapatkan suntikan dana segar dari Silicon Valley.', body:'Investasi ini membuktikan bahwa sektor teknologi pertanian di Indonesia masih menjadi primadona bagi investor global tahun 2026.'},
-  {cat:'Gadget', title:'Snapdragon X2 Mengguncang Pasar Laptop', desc:'Chip terbaru dari Qualcomm yang bikin baterai laptop tahan 2 hari.', body:'Dengan arsitektur ARM, laptop masa depan tidak akan lagi butuh kipas yang berisik namun tetap memiliki performa super kencang.'}
-];
+    <header>
+        <div class="logo">Tech<span>Pulse</span></div>
+    </header>
 
-function render() {
-  document.getElementById('main-grid').innerHTML = arts.map((a, i) => `
-    <div class="card" onclick="openArt(${i})">
-      <div class="c-cat">${a.cat}</div>
-      <div class="c-title">${a.title}</div>
-      <p style="color:var(--text-sub); font-size:0.9rem">${a.desc}</p>
+    <div class="container">
+        <h1 class="main-headline">Tren Teknologi <br><span style="color:var(--accent)">Diringkas AI.</span></h1>
+        
+        <div id="feed"></div>
     </div>
-  `).join('');
-}
 
-function openArt(i) {
-  const a = arts[i];
-  document.getElementById('modal-body').innerHTML = `
-    <div class="c-cat">${a.cat}</div>
-    <h2 style="font-family:'Fraunces',serif; font-size:2rem; margin:1rem 0;">${a.title}</h2>
-    <p style="font-size:1.1rem; line-height:1.8; color:var(--text-sub)">${a.body}</p>
-  `;
-  document.getElementById('modal').style.display = 'block';
-}
+    <footer>&copy; 2026 TechPulse Lab • Created on iPhone</footer>
 
-function closeArt() { document.getElementById('modal').style.display = 'none'; }
+    <script>
+        const news = [
+            { t: "AI", h: "GPT-5 Resmi Rilis: Mampu Berpikir Logis", d: "OpenAI meluncurkan model baru yang bisa menyelesaikan masalah matematika rumit dan coding level senior." },
+            { t: "STARTUP", h: "Pendanaan $50 Juta untuk AgriTech", d: "Sektor pertanian digital Indonesia kembali dilirik raksasa investasi dunia." },
+            { t: "GADGET", h: "Snapdragon X2 Guncang Pasar", d: "Chip ARM terbaru yang membuat baterai laptop sanggup bertahan hingga 2 hari penuh." }
+        ];
 
-function askAI() {
-  const input = document.getElementById('ai-in').value;
-  alert("AI TechPulse menjawab: Tren '" + input + "' saat ini sedang naik daun di Jakarta!");
-}
+        const feed = document.getElementById('feed');
+        feed.innerHTML = news.map(n => `
+            <div class="card">
+                <span class="tag">${n.t}</span>
+                <div class="title">${n.h}</div>
+                <p class="desc">${n.d}</p>
+            </div>
+        `).join('');
 
-function toggleTheme() {
-  const html = document.documentElement;
-  html.setAttribute('data-theme', html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
-}
-
-render();
-</script>
+        window.onscroll = () => {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            document.getElementById("progress").style.width = (winScroll / height) * 100 + "%";
+        };
+    </script>
 </body>
 </html>
